@@ -46,6 +46,6 @@ function getTokens() {
     })
     .catch(error => {
       // Handle redirect error
-      console.log("we have errors. we do not have tokenResponse");
+      console.error("we have errors. we do not have tokenResponse", error);
     });
 }

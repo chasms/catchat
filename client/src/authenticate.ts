@@ -17,3 +17,20 @@ const msalConfig = {
 };
 
 const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+var loginRequestOptions = {
+  scopes: ["user.read", "mail.send"] // optional Array<string>
+};
+
+function loginAttempt() {
+  try {
+    msalInstance.loginRedirect(loginRequestOptions);
+  } catch (err) {
+    // handle error
+    console.error("Login did not work", err);
+  }
+}
+
+function logoutAttempt() {
+  msalInstance.logoutRedirect();
+}

@@ -16,6 +16,7 @@ const msalConfig = {
   }
 };
 
+// Create an instance of PublicClientApplication
 const msalInstance = new msal.PublicClientApplication(msalConfig);
 
 var loginRequestOptions = {
@@ -33,4 +34,18 @@ function loginAttempt() {
 
 function logoutAttempt() {
   msalInstance.logoutRedirect();
+}
+
+function getTokens() {
+  // Handle the redirect flows
+  msalInstance
+    .handleRedirectPromise()
+    .then(tokenResponse => {
+      // Handle redirect response
+      console.log("tokenResponse", tokenResponse);
+    })
+    .catch(error => {
+      // Handle redirect error
+      console.log("we have errors. we do not have tokenResponse");
+    });
 }
